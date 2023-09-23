@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        function diffTime(current,target){
+            //时间戳差值，无需使用getTime()进行时间戳差值的获取，在两个对象相减的时候会自己转化成时间戳进行计算
+            //时间戳单位是毫秒所以/1000得到秒,使用了向上取整
+            var sub = Math.ceil((target-current)/1000)
+            //天，也要取整,直接舍去小数部分
+            var day = parseInt(sub/(60*60*24))
+            //小时
+            var hours = parseInt(sub%(60*60*24) / (60*60))
+            //分钟
+            var minutes = parseInt(sub%(60*60)/60)
+            //秒
+            var seconds = sub%60
+
+            var obj = {
+                day:day,
+                hours:hours,
+                minutes:minutes,
+                seconds:seconds
+            }
+            return obj
+        }
+        //使用间隔定时器刷新
+        setInterval(function(){
+            var currentDate = new Date()
+            var targetDate = new Date("2023/6/18")
+            var res = diffTime(currentDate,targetDate)
+            console.log(res)
+            // document.write(`京东618-${res.day}天${res.hours}时${res.minutes}分${res.seconds}秒`)
+            // document.write("<br>")
+            //innerHTML后面的一次传值会覆盖前面的
+            box.innerHTML = `京东618-${res.day}天
+            ${res.hours}时${res.minutes}分${res.seconds}秒`
+
+        },1000)
+    </script>
+</body>
+</html>

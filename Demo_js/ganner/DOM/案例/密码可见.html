@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            text-align: center;
+            margin: 80px auto;
+        }
+        .box div{
+            font-size: 25px;
+        }
+        .box input{
+            width: 300px;
+            height: 25px;
+            font-size: 20px;
+        }
+        .box div:nth-child(2) button{
+            width: 30px;
+            height: 25px;
+        }
+        .box div:nth-child(4) button{
+            margin-top: 20px;
+            width: 50px;
+            height: 40px;
+        }
+        .box .check{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div>
+            用户名:
+            <input type="text" id="username">
+        </div>
+        <div>
+            密码:&nbsp;&nbsp;&nbsp;
+            <input type="password" id="password">
+            <button id="login">eye</button>
+        </div>
+        <div class="check">
+            <!-- 默认是在勾选上的 -->
+            <input type="checkbox" checked id="rember"/>
+        </div>
+        <div>
+            <button id="login">登录</button>
+        </div>
+    </div>
+    <script>
+        var passInput = document.getElementById("password")
+        var login = document.querySelector("#login")
+
+        login.onclick = function(){
+            console.log(passInput.type)
+            if(passInput.type==="password"){
+                passInput.type = "text"
+            }else{
+                passInput.type = "password"
+            }
+        }
+    </script>
+</body>
+</html>

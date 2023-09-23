@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            display: flex;
+        }
+        .box1{
+            width: 300px;
+            height: 300px;
+            border: 1px solid gray;
+            /* background: linear-gradient(to right, red, green, skyblue, yellow); */
+            background: linear-gradient(45deg, red, green);
+        }
+        .box2{
+            width: 500px;
+            height: 300px;
+            border: 1px solid gray;
+            /* margin-top: 10px; */
+            background: radial-gradient(red, green);
+        }
+        .box3{
+            width: 300px;
+            height: 300px;
+            border: 1px solid gray;
+            background: radial-gradient(red 0%,skyblue 40%, green 80%);
+            border-radius: 50%;
+        }
+        .box4{
+            width: 300px;
+            height: 300px;
+            border: 1px solid gray;
+            background: repeating-radial-gradient(red 0%,yellow 10%, green 20%);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box4"></div>
+    </div>
+</body>
+</html>

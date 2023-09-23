@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.content{
+            display: none;
+        }
+        div.content:target{
+            display: block;
+        }
+        div::selection{
+            background: rgba(210, 63, 213, 0.8);
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <input type="color" name="color">
+        <input type="datetime-local">
+        <input type="submit">
+    </form>
+
+    <div>
+        <a href="#aaa">aaa</a>
+        <div id="aaa" class="content">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit laborum officia delectus eum incidunt perferendis repellendus illum corporis, sapiente amet provident repellat consequatur ducimus est explicabo tempore eos exercitationem sed?
+        </div>
+    </div>
+    <div>
+        <a href="#bbb">bbb</a>
+        <div id="bbb" class="content">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit laborum officia delectus eum incidunt perferendis repellendus illum corporis, sapiente amet provident repellat consequatur ducimus est explicabo tempore eos exercitationem sed?
+        </div>
+    </div><div>
+        <a href="#ccc">ccc</a>
+        <div id="ccc" class="content">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit laborum officia delectus eum incidunt perferendis repellendus illum corporis, sapiente amet provident repellat consequatur ducimus est explicabo tempore eos exercitationem sed?
+        </div>
+    </div>
+
+</body>
+</html>

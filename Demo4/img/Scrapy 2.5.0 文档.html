@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://www.osgeo.cn/scrapy/intro/overview.html -->
+<html class="writer-html5" lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrapy一目了然 — Scrapy 2.5.0 文档</title>
+      <link rel="stylesheet" href="./Scrapy 2.5.0 文档_files/pygments.css" type="text/css">
+      <link rel="stylesheet" href="./Scrapy 2.5.0 文档_files/theme.css" type="text/css">
+      <link rel="stylesheet" href="./Scrapy 2.5.0 文档_files/tooltipster.custom.css" type="text/css">
+      <link rel="stylesheet" href="./Scrapy 2.5.0 文档_files/tooltipster.bundle.min.css" type="text/css">
+      <link rel="stylesheet" href="./Scrapy 2.5.0 文档_files/tooltipster-sideTip-shadow.min.css" type="text/css">
+      <link rel="stylesheet" href="./Scrapy 2.5.0 文档_files/tooltipster-sideTip-punk.min.css" type="text/css">
+      <link rel="stylesheet" href="./Scrapy 2.5.0 文档_files/tooltipster-sideTip-noir.min.css" type="text/css">
+      <link rel="stylesheet" href="./Scrapy 2.5.0 文档_files/tooltipster-sideTip-light.min.css" type="text/css">
+      <link rel="stylesheet" href="./Scrapy 2.5.0 文档_files/tooltipster-sideTip-borderless.min.css" type="text/css">
+      <link rel="stylesheet" href="./Scrapy 2.5.0 文档_files/micromodal.css" type="text/css">
+      <link rel="stylesheet" href="./Scrapy 2.5.0 文档_files/sphinx_rtd_theme.css" type="text/css">
+      <link rel="stylesheet" href="./Scrapy 2.5.0 文档_files/custom.css" type="text/css">
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="./Scrapy 2.5.0 文档_files/f(5).txt"></script><script src="./Scrapy 2.5.0 文档_files/f(6).txt" id="google_shimpl"></script><script data-url_root="../" id="documentation_options" src="./Scrapy 2.5.0 文档_files/documentation_options.js.下载"></script>
+        <script src="./Scrapy 2.5.0 文档_files/jquery.js.下载"></script>
+        <script src="./Scrapy 2.5.0 文档_files/underscore.js.下载"></script>
+        <script src="./Scrapy 2.5.0 文档_files/doctools.js.下载"></script>
+        <script src="./Scrapy 2.5.0 文档_files/hoverxref.js.下载"></script>
+        <script src="./Scrapy 2.5.0 文档_files/tooltipster.bundle.min.js.下载"></script>
+        <script src="./Scrapy 2.5.0 文档_files/micromodal.min.js.下载"></script>
+        <script async="async" src="./Scrapy 2.5.0 文档_files/tex-mml-chtml.js.下载"></script>
+    <script src="./Scrapy 2.5.0 文档_files/theme.js.下载"></script>
+    <link rel="index" title="索引" href="https://www.osgeo.cn/scrapy/genindex.html">
+    <link rel="search" title="搜索" href="https://www.osgeo.cn/scrapy/search.html">
+    <link rel="next" title="安装指南" href="https://www.osgeo.cn/scrapy/intro/install.html">
+    <link rel="prev" title="Scrapy 2.5 documentation" href="https://www.osgeo.cn/scrapy/index.html"> 
+
+<script data-ad-client="ca-pub-1466963416408457" async="" src="./Scrapy 2.5.0 文档_files/f(7).txt" data-checked-head="true"></script>
+
+
+
+<meta http-equiv="origin-trial" content="AzoawhTRDevLR66Y6MROu167EDncFPBvcKOaQispTo9ouEt5LvcBjnRFqiAByRT+2cDHG1Yj4dXwpLeIhc98/gIAAACFeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjYxMjk5MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A6+nc62kbJgC46ypOwRsNW6RkDn2x7tgRh0wp7jb3DtFF7oEhu1hhm4rdZHZ6zXvnKZLlYcBlQUImC4d3kKihAcAAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjYxMjk5MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A/9La288e7MDEU2ifusFnMg1C2Ij6uoa/Z/ylwJIXSsWfK37oESIPbxbt4IU86OGqDEPnNVruUiMjfKo65H/CQwAAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjYxMjk5MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="AzoawhTRDevLR66Y6MROu167EDncFPBvcKOaQispTo9ouEt5LvcBjnRFqiAByRT+2cDHG1Yj4dXwpLeIhc98/gIAAACFeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjYxMjk5MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A6+nc62kbJgC46ypOwRsNW6RkDn2x7tgRh0wp7jb3DtFF7oEhu1hhm4rdZHZ6zXvnKZLlYcBlQUImC4d3kKihAcAAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjYxMjk5MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A/9La288e7MDEU2ifusFnMg1C2Ij6uoa/Z/ylwJIXSsWfK37oESIPbxbt4IU86OGqDEPnNVruUiMjfKo65H/CQwAAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjYxMjk5MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style><link rel="preload" href="./Scrapy 2.5.0 文档_files/f(8).txt" as="script"><script type="text/javascript" src="./Scrapy 2.5.0 文档_files/f(8).txt"></script><link rel="preload" href="./Scrapy 2.5.0 文档_files/f(8).txt" as="script"><script type="text/javascript" src="./Scrapy 2.5.0 文档_files/f(8).txt"></script></head><body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="https://www.osgeo.cn/scrapy/index.html" class="icon icon-home"> Scrapy
+          </a>
+              <div class="version">
+                2.5
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://www.osgeo.cn/scrapy/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一步</span></p>
+<ul class="current" aria-expanded="true">
+<li class="toctree-l1 current" aria-expanded="true"><a class="reference internal current" href="https://www.osgeo.cn/scrapy/intro/overview.html#" aria-expanded="true"><button class="toctree-expand" title="Open/close menu"></button>Scrapy一目了然</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="https://www.osgeo.cn/scrapy/intro/overview.html#walk-through-of-an-example-spider"><button class="toctree-expand" title="Open/close menu"></button>浏览示例蜘蛛</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="https://www.osgeo.cn/scrapy/intro/overview.html#what-just-happened">刚刚发生了什么？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="https://www.osgeo.cn/scrapy/intro/overview.html#what-else">还有什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://www.osgeo.cn/scrapy/intro/overview.html#what-s-next">下一步是什么？</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/intro/install.html">安装指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/intro/tutorial.html">Scrapy 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/intro/examples.html">实例</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">基本概念</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/commands.html">命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/spiders.html">蜘蛛</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/selectors.html">选择器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/items.html">项目</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/loaders.html">项目加载器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/shell.html">Scrapy shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/item-pipeline.html">项目管道</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/feed-exports.html">Feed 导出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/request-response.html">请求和响应</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/link-extractors.html">链接提取器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/settings.html">设置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/exceptions.html">例外情况</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">内置服务</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/logging.html">登录</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/stats.html">统计数据集合</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/email.html">发送电子邮件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/telnetconsole.html">远程登录控制台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/webservice.html">Web服务</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">解决具体问题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/debug.html">调试spiders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/contracts.html">蜘蛛合约</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/practices.html">常用做法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/broad-crawls.html">宽爬行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/developer-tools.html">使用浏览器的开发人员工具进行抓取</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/dynamic-content.html">选择动态加载的内容</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/leaks.html">调试内存泄漏</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/media-pipeline.html">下载和处理文件和图像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/deploy.html">部署蜘蛛</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/autothrottle.html">AutoThrottle 扩展</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/benchmarking.html">标杆管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/jobs.html">作业：暂停和恢复爬行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/coroutines.html">协同程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/asyncio.html">asyncio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">扩展Scrapy</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/architecture.html">体系结构概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/downloader-middleware.html">下载器中间件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/spider-middleware.html">蜘蛛中间件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/extensions.html">扩展</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/api.html">核心API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/signals.html">信号</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/scheduler.html">调度程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/topics/exporters.html">条目导出器</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其余所有</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/news.html">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/contributing.html">为 Scrapy 贡献</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://www.osgeo.cn/scrapy/versioning.html">版本控制和API稳定性</a></li>
+</ul>
+
+        </div><div class="google-auto-placed" style="width: 100%; height: auto; clear: both; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-1466963416408457" data-adsbygoogle-status="done" style="display: block; margin: 10px auto; background-color: transparent; height: 250px;" data-ad-status="filled"><ins id="aswift_2_expand" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 250px; width: 303px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"><ins id="aswift_2_anchor" style="border: none; height: 250px; width: 303px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block; overflow: visible;"><iframe id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;border:0;width:303px;height:250px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="303" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" src="./Scrapy 2.5.0 文档_files/ads.html" data-google-container-id="a!3" data-google-query-id="CLv2iefmpvgCFZLEFgUddxkN1A" data-load-complete="true"></iframe></ins></ins></ins></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="https://www.osgeo.cn/scrapy/index.html">Scrapy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="https://www.osgeo.cn/scrapy/index.html" class="icon icon-home"></a> »</li>
+      <li>Scrapy一目了然</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scrapy-at-a-glance">
+<span id="intro-overview"></span><h1>Scrapy一目了然<a class="headerlink" href="https://www.osgeo.cn/scrapy/intro/overview.html#scrapy-at-a-glance" title="永久链接至标题">¶</a></h1>
+<p>SCRAPPY(/ˈSkreɪpaɪ/)是一个应用程序框架，用于抓取网站和提取结构化数据，这些数据可用于广泛的有用应用程序，如数据挖掘、信息处理或历史存档。</p>
+<p>尽管Scrapy最初是为 <a class="reference external" href="https://en.wikipedia.org/wiki/Web_scraping">web scraping</a> 它还可以用于使用API提取数据（例如 <a class="reference external" href="https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html">Amazon Associates Web Services</a> ）或者作为一个通用的网络爬虫。</p><script async="" src="./Scrapy 2.5.0 文档_files/f(7).txt"></script>
+<ins class="adsbygoogle" style="display: block; text-align: center; height: 0px;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-1466963416408457" data-ad-slot="8850786025" data-adsbygoogle-status="done" data-ad-status="filled"><ins id="aswift_1_expand" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 0px; width: 539px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"><ins id="aswift_1_anchor" style="border: none; height: 0px; width: 539px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block; overflow: hidden; transition: opacity 1s cubic-bezier(0.4, 0, 1, 1) 0s, width 0.2s cubic-bezier(0.4, 0, 1, 1) 0.3s, height 0.5s cubic-bezier(0.4, 0, 1, 1) 0s; opacity: 0;"><iframe id="aswift_1" name="aswift_1" style="left: 0px; position: absolute; top: 0px; border: 0px; width: 539px; height: 0px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="539" height="0" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" src="./Scrapy 2.5.0 文档_files/ads(1).html" data-google-container-id="a!2" data-google-query-id="CKevgOfmpvgCFenBFgUdovAPjQ" data-load-complete="true"></iframe></ins></ins></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<section id="walk-through-of-an-example-spider">
+<h2>浏览示例蜘蛛<a class="headerlink" href="https://www.osgeo.cn/scrapy/intro/overview.html#walk-through-of-an-example-spider" title="永久链接至标题">¶</a></h2>
+<p>为了向您展示Scrapy带来的内容，我们将以最简单的方式运行蜘蛛，向您介绍Scrapy Spider的示例。</p>
+<p>以下是一个蜘蛛代码，它从网站http://quotes.toscrape.com上抓取著名的引语，按照以下页码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scrapy</span>
+
+
+<span class="k">class</span> <span class="nc">QuotesSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">'quotes'</span>
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">'http://quotes.toscrape.com/tag/humor/'</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">quote</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">'div.quote'</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="p">{</span>
+                <span class="s1">'author'</span><span class="p">:</span> <span class="n">quote</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">'span/small/text()'</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+                <span class="s1">'text'</span><span class="p">:</span> <span class="n">quote</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">'span.text::text'</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+            <span class="p">}</span>
+
+        <span class="n">next_page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">'li.next a::attr("href")'</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">next_page</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">response</span><span class="o">.</span><span class="n">follow</span><span class="p">(</span><span class="n">next_page</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>把它放在一个文本文件中，命名为 <code class="docutils literal notranslate"><span class="pre">quotes_spider.py</span></code> 然后用 <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/topics/commands.html#std-command-runspider"><code class="xref std std-command docutils literal notranslate"><span class="pre">runspider</span></code></a> 命令：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scrapy</span> <span class="n">runspider</span> <span class="n">quotes_spider</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">o</span> <span class="n">quotes</span><span class="o">.</span><span class="n">jl</span>
+</pre></div>
+</div>
+<p>完成后，您将 <code class="docutils literal notranslate"><span class="pre">quotes.jl</span></code> 以JSON行格式提交一个引号列表，包含文本和作者，如下所示：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">"author"</span><span class="p">:</span> <span class="s2">"Jane Austen"</span><span class="p">,</span> <span class="s2">"text"</span><span class="p">:</span> <span class="s2">"</span><span class="se">\u201c</span><span class="s2">The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.</span><span class="se">\u201d</span><span class="s2">"</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">"author"</span><span class="p">:</span> <span class="s2">"Steve Martin"</span><span class="p">,</span> <span class="s2">"text"</span><span class="p">:</span> <span class="s2">"</span><span class="se">\u201c</span><span class="s2">A day without sunshine is like, you know, night.</span><span class="se">\u201d</span><span class="s2">"</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">"author"</span><span class="p">:</span> <span class="s2">"Garrison Keillor"</span><span class="p">,</span> <span class="s2">"text"</span><span class="p">:</span> <span class="s2">"</span><span class="se">\u201c</span><span class="s2">Anyone who thinks sitting in church can make you a Christian must also think that sitting in a garage can make you a car.</span><span class="se">\u201d</span><span class="s2">"</span><span class="p">}</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<section id="what-just-happened">
+<h3>刚刚发生了什么？<a class="headerlink" href="https://www.osgeo.cn/scrapy/intro/overview.html#what-just-happened" title="永久链接至标题">¶</a></h3>
+<p>当你运行命令时 <code class="docutils literal notranslate"><span class="pre">scrapy</span> <span class="pre">runspider</span> <span class="pre">quotes_spider.py</span></code> 斯克里奇在里面寻找蜘蛛的定义，然后用它的爬行引擎运行。</p>
+<p>通过向中定义的URL发出请求启动的爬网 <code class="docutils literal notranslate"><span class="pre">start_urls</span></code> 属性（在本例中，只有引号的URL <em>humor</em> 并调用默认回调方法 <code class="docutils literal notranslate"><span class="pre">parse</span></code> ，将响应对象作为参数传递。在 <code class="docutils literal notranslate"><span class="pre">parse</span></code> 回调，我们使用CSS选择器循环引用元素，生成一个包含提取的引号文本和作者的python dict，查找到下一页的链接，并使用它调度另一个请求。 <code class="docutils literal notranslate"><span class="pre">parse</span></code> 方法作为回调。</p>
+<p>在这里，您注意到Scrapy的一个主要优点：请求是 <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/topics/architecture.html#topics-architecture"><span class="std std-ref">scheduled and processed asynchronously</span></a> . 这意味着Scrapy不需要等待请求完成和处理，它可以同时发送另一个请求或做其他事情。这也意味着，即使某些请求失败或在处理过程中发生错误，其他请求也可以继续进行。</p>
+<p>虽然这使您能够非常快速地进行爬行（同时以容错的方式发送多个并发请求），但Scrapy还使您能够控制爬行的礼貌性。 <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/topics/settings.html#topics-settings-ref"><span class="std std-ref">a few settings</span></a> . 您可以在每个请求之间设置下载延迟、限制每个域或每个IP的并发请求量，甚至 <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/topics/autothrottle.html#topics-autothrottle"><span class="std std-ref">using an auto-throttling extension</span></a> 它试图自动解决这些问题。</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>这是使用 <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/topics/feed-exports.html#topics-feed-exports"><span class="std std-ref">feed exports</span></a> 要生成JSON文件，您可以轻松地更改导出格式（例如XML或CSV）或存储后端（FTP或 <a class="reference external" href="https://aws.amazon.com/s3/">Amazon S3</a> 例如）。你也可以写一个 <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/topics/item-pipeline.html#topics-item-pipeline"><span class="std std-ref">item pipeline</span></a> 将项目存储在数据库中。</p>
+</div>
+</section>
+</section>
+<section id="what-else">
+<span id="topics-whatelse"></span><h2>还有什么？<a class="headerlink" href="https://www.osgeo.cn/scrapy/intro/overview.html#what-else" title="永久链接至标题">¶</a></h2>
+<p>你已经看到了如何使用Scrapy从网站中提取和存储项目，但这只是表面现象。Scrapy提供了许多强大的功能，使抓取变得简单和高效，例如：</p>
+<ul class="simple">
+<li><p>内置支持 <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/topics/selectors.html#topics-selectors"><span class="std std-ref">selecting and extracting</span></a> 使用扩展的CSS选择器和XPath表达式从HTML/XML源中获取数据，并使用正则表达式提取助手方法。</p></li>
+<li><p><a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/topics/shell.html#topics-shell"><span class="std std-ref">interactive shell console</span></a> （ipython-aware）用于尝试使用css和xpath表达式来获取数据，在编写或调试spider时非常有用。</p></li>
+<li><p>内置支持 <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/topics/feed-exports.html#topics-feed-exports"><span class="std std-ref">generating feed exports</span></a> 以多种格式（json、csv、xml）存储在多个后端（ftp、s3、本地文件系统）</p></li>
+<li><p>强大的编码支持和自动检测，用于处理外部、非标准和中断的编码声明。</p></li>
+<li><p><a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/index.html#extending-scrapy"><span class="std std-ref">Strong extensibility support</span></a> ，允许您使用 <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/topics/signals.html#topics-signals"><span class="std std-ref">signals</span></a> 以及定义良好的API（中间件， <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/topics/extensions.html#topics-extensions"><span class="std std-ref">extensions</span></a> 和 <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/topics/item-pipeline.html#topics-item-pipeline"><span class="std std-ref">pipelines</span></a> ）</p></li>
+<li><p>广泛的内置扩展和用于处理的中间产品：</p>
+<ul>
+<li><p>cookie和会话处理</p></li>
+<li><p>HTTP功能，如压缩、身份验证、缓存</p></li>
+<li><p>用户代理欺骗</p></li>
+<li><p>robots.txt</p></li>
+<li><p>爬行深度限制</p></li>
+<li><p>更多</p></li>
+</ul>
+</li>
+<li><p>A <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/topics/telnetconsole.html#topics-telnetconsole"><span class="std std-ref">Telnet console</span></a> 用于挂接到运行在Scrapy进程中的Python控制台，以便内省和调试爬虫程序</p></li>
+<li><p>还有其他的好东西，比如可重复使用的蜘蛛 <a class="reference external" href="https://www.sitemaps.org/index.html">Sitemaps</a> 和XML/CSV源，这是 <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/topics/media-pipeline.html#topics-media-pipeline"><span class="std std-ref">automatically downloading images</span></a> （或任何其他媒体）与抓取的项目、缓存DNS解析程序等相关！</p></li>
+</ul>
+</section>
+<section id="what-s-next">
+<h2>下一步是什么？<a class="headerlink" href="https://www.osgeo.cn/scrapy/intro/overview.html#what-s-next" title="永久链接至标题">¶</a></h2>
+<p>接下来的步骤是 <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/intro/install.html#intro-install"><span class="std std-ref">install Scrapy</span></a> ， <a class="hoverxref tooltip reference internal tooltipstered" href="https://www.osgeo.cn/scrapy/intro/tutorial.html#intro-tutorial"><span class="std std-ref">follow through the tutorial</span></a> 学习如何创建一个完整的Scrapy项目和 <a class="reference external" href="https://scrapy.org/community/">join the community</a> . 感谢您的关注！</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="https://www.osgeo.cn/scrapy/index.html" class="btn btn-neutral float-left" title="Scrapy 2.5 documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="https://www.osgeo.cn/scrapy/intro/install.html" class="btn btn-neutral float-right" title="安装指南" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© 版权所有 2008–2021, Scrapy developers.
+      <span class="lastupdated">最后更新于 10月 27, 2021.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ 
+<script type="text/javascript">
+analytics.ready(function () {
+    ga('require', 'linker');
+    ga('linker:autoLink', ['zyte.com']);
+});
+</script>
+
+
+
+
+  <div class="modal micromodal-slide rst-content" id="micromodal" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close="">
+      <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="micromodal-title">
+        <header class="modal__header">
+          <h1 class="modal__title" id="micromodal-title"></h1>
+          <button class="modal__close" aria-label="Close modal" data-micromodal-close=""></button>
+        </header>
+        <hr>
+        <main class="modal__content" id="micromodal-content"></main>
+        <footer class="modal__footer">
+          <button class="modal__btn" data-micromodal-close="" aria-label="Close this dialog window">Close</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+<ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;" data-ad-status="unfilled"><ins id="aswift_0_expand" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"><ins id="aswift_0_anchor" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block;"><iframe id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" src="./Scrapy 2.5.0 文档_files/ads(2).html" data-google-container-id="a!1" data-load-complete="true"></iframe></ins></ins></ins><iframe src="./Scrapy 2.5.0 文档_files/aframe.html" width="0" height="0" style="display: none;"></iframe></body><iframe id="google_esf" name="google_esf" src="./Scrapy 2.5.0 文档_files/zrt_lookup.html" style="display: none;"></iframe></html>

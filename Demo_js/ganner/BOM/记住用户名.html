@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            text-align: center;
+            margin: 80px auto;
+        }
+        .box div{
+            font-size: 25px;
+        }
+        .box input{
+            width: 300px;
+            height: 25px;
+        }
+        .box button{
+            margin-top: 20px;
+            width: 50px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div>
+            用户名:
+            <input type="text" id="username">
+        </div>
+        <div>
+            密码:&nbsp;&nbsp;&nbsp;
+            <input type="password" id="password">
+        </div>
+        <div>
+            <button id="login">登录</button>
+        </div>
+    </div>
+    <script>
+        //先从本地获取一下用户名和密码并输入到文本框里面
+        var uservalue = localStorage.getItem("username")
+        var passvalue = localStorage.getItem("password")
+        //判断是否为空，若是就写入
+        if(uservalue && passvalue) {
+            username.value = uservalue
+            password.value = passvalue
+        }
+
+        login.onclick = function(){
+            // console.log(username.value,password.value)
+            localStorage.setItem("username",username.value)
+            localStorage.setItem("password",password.value)
+        }
+    </script>
+</body>
+</html>

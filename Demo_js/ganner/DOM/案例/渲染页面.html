@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            overflow: hidden;
+        }
+
+        li img {
+            float: left;
+            width: 100px;
+        }
+        ul>li>p>span{
+            color: rgb(255, 0, 21);
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <!-- <li>
+            <img src="https://pic.maizuo.com/usr/movie/1f25dd6943762288dfd84b961c98f478.jpg?x-oss-process=image/quality,Q_70" alt="">
+            <h3>航海王：红发歌姬</h3>
+            <p>观众评分 <span>7.5</span></p>
+        </li> -->
+    </ul>
+    <script>
+        var filmList = [
+            {
+                url: "https://pic.maizuo.com/usr/movie/1f25dd6943762288dfd84b961c98f478.jpg?x-oss-process=image/quality,Q_70",
+                title: "航海王：红发歌姬",
+                grade: 7.5
+            },
+            {
+                url: "https://pic.maizuo.com/usr/movie/2da2cc429af2610a0006d066db8384a3.jpg?x-oss-process=image/quality,Q_70",
+                title: "名侦探柯南：万圣节的新娘",
+                grade: 7.6
+            },
+            {
+                url: "https://pic.maizuo.com/usr/movie/f31367bb1a275f032ea3793a0571d9e0.jpg?x-oss-process=image/quality,Q_70",
+                title: "万里归途",
+                grade: 7.3
+            }
+        ]
+
+        var filmItems = filmList.map(function(item){
+            return `<li>
+            <img src="${item.url}" alt="">
+            <h3>${item.title}</h3>
+            <p>观众评分 <span>${item.grade}</span></p>`
+        })
+
+        // console.log(filmItems.join(""))
+
+        var oul = document.querySelector("ul")
+        oul.innerHTML = filmItems.join("")
+
+    </script>
+</body>
+
+</html>

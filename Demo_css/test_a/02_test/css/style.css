@@ -1,0 +1,24 @@
+/* *{
+    margin: 0;
+    padding: 0;
+} */
+li
+{
+    width: 150px;
+    line-height: 40px;
+}
+div a{
+    color: white;
+    /* 取消文本下划线 */
+    text-decoration: none;
+}
+div a:hover{
+    background-color: red;
+}
+.home{
+    background-color: red;
+}
+table{
+    background-color: black;
+}
+

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频解析</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .bge{
+        height: 1200px;
+        background-repeat: no-repeat;
+        background-image: url(./img/海贼王.jpg);
+        background-attachment: scroll;
+        background-size: cover;
+        }
+        li{
+            list-style-type: disc;
+        }
+        .one{
+            height: 100px;
+            text-align: center;
+            font-size: 20px;
+        }
+        .one td a{
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .two{
+            width: 1900px;
+            border: aqua;
+        }
+        .three{
+            border: orchid; 
+            text-align: center;
+        }
+        .three tr{
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .three tr td{
+            height: 50px;
+            width: 200px;
+        }
+        .three tr td input{
+            background-color: transparent;
+            border: 1px solid rgb(255, 255, 255);
+            border-radius: 20px;
+        }
+        .t1{
+            height: 25px;
+            width: 500px;
+        }
+        .t2{
+            height: 30px;
+            width: 60px;
+        }
+        .t3{
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bge">
+
+        <table class="two" cellspacing="0" cellpadding="0">
+            <tr class="one">
+                <td><a href="https://v.qq.com/" target="_blank">腾讯视频</a></td>
+                <td><a href="https://www.iqiyi.com/" target="_blank">爱奇艺</a></td>
+                <td><a href="https://www.youku.com/" target="_blank">优酷视频</a></td>
+                <td><a href="https://www.mgtv.com/" target="_blank">芒果TV</a></td>
+            </tr>
+        </table>    
+
+    <center>
+    <table border="0" class="three" cellspacing="0" cellpadding="0">
+        <tr>
+            <form action="https://jx.bozrc.com:4433/player/?" target="_blank">
+                <td>解析接口1：</td>
+                <td>视频链接:</td>
+                <td><input class="t1" type="text" placeholder="请输入视频链接" name="url="></td>
+                <td><input class="t2" type="submit" value="解析"></td>
+                <td class="t3"><input class="t2" type="reset" value="重置"></td>
+            </form>
+        </tr>
+        <tr>
+            <form action="https://z1.m1907.cn/?" target="_blank">
+                <td>解析接口2：</td>
+                <td>视频链接:</td>
+                <td><input class="t1" type="text" placeholder="请输入视频链接" name="jx="></td>
+                <td><input class="t2" type="submit" value="解析"></td>
+                <td class="t3"><input class="t2" type="reset" value="重置"></td>
+            </form>
+        </tr>
+        <tr>
+            <form action="https://jx.aidouer.net/?" target="_blank">
+                <td>解析接口3：</td>
+                <td>视频链接:</td>
+                <td><input class="t1" type="text" placeholder="请输入视频链接" name="url="></td>
+                <td><input class="t2" type="submit" value="解析"></td>
+                <td class="t3"><input class="t2" type="reset" value="重置"></td>
+            </form>
+        </tr>
+        <tr>
+            <form action="https://vip.bljiex.com/?" target="_blank">
+                <td>解析接口4：</td>
+                <td>视频链接:</td>
+                <td><input class="t1" type="text" placeholder="请输入视频链接" name="v="></td>
+                <td><input class="t2" type="submit" value="解析"></td>
+                <td class="t3"><input class="t2" type="reset" value="重置"></td>
+            </form>
+        </tr>
+        <tr>
+            <form action="https://api.qianqi.net/vip/?" target="_blank">
+                <td>解析接口5：</td>
+                <td>视频链接:</td>
+                <td><input class="t1" type="text" placeholder="请输入视频链接" name="url="></td>
+                <td><input class="t2" type="submit" value="解析"></td>
+                <td class="t3"><input class="t2" type="reset" value="重置"></td>
+            </form>
+        </tr>
+    </table>
+    </center>
+
+    </div>
+</body>
+
+</html>

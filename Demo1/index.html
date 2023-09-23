@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="index">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" media="screen and (max-width:768px)" href="css/mobile.css">
+    <title>index</title>
+</head>
+<body>
+    <img src="../Demo1/img/铃铛.png" alt="" class="local">
+    <header>
+        <nav id="navbar">
+            <div class="container">  <!--设置一个div盒子进行包裹，让页面不管是否在拉伸的状态下都居中-->
+                <h1><a href="index.html">maker在线</a></h1>
+                <ul>
+                    <li><a class="current" href="index.html">首页</a></li>
+                    <li><a href="about.html">关于我们</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="showcase">
+            <div class="container">
+                <div class="showcase-content">
+                    <h1>欢迎来到 <span class="text-primary"> maker在线 </span></h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis voluptate optio explicabo animi ducimus sequi, consequatur fuga sunt exercitationem quod repellat non rem culpa. 
+                        Culpa nam ut voluptates debitis eius!</p>
+                    <a class="btn" href="about.html">关于我们</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="home-info" class="bg-dark">
+        <div class="info-img"></div>
+        <div class="info-content">
+            <h2><span class="text-primary">maker在线</span>介绍</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum tempora, porro aliquid accusamus ipsam error corrupti repellat quae rem doloremque unde, praesentium voluptatum soluta earum.
+                 Voluptas dolor exercitationem quis consequatur?</p>
+                 <a class="btn btn-light" href="about.html">阅读更多</a>    
+        </div>
+    </section>
+    <section id="features">
+        <div class="box bg-light">
+            <i class="fa fa-users fa-3x"></i>
+            <h3>讲师介绍</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Quia, impedit.</p>
+        </div>
+        <div class="box bg-primary">
+            <i class="fa fa-leanpub fa-3x"></i>
+            <h3>课程详情</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Quia, impedit.</p>
+        </div>
+        <div class="box btn-light">
+            <i class="fa fa-graduation-cap fa-3x"></i>
+            <h3>学员反馈</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Quia, impedit.</p>
+        </div>
+    </section>
+    <div class="clr"></div>
+    <footer id="main-footer">
+        <p>maker在线 &copy; 2021, All Rights Reserved</p>
+    </footer>
+    <script>
+        var imgBox = document.querySelector('.local')
+        //给document绑定一个鼠标移动事件
+        document.onmousemove = function(e) {
+            //console.log('运动')
+            //拿到光标相对于窗口的坐标点位
+            var x = e.clientX
+            var y = e.clientY
+            
+            //把x和y的值赋给img标签的left和top样式
+            imgBox.style.left = x + 5 + 'px'
+            imgBox.style.top = y + 5 + 'px'
+        }
+    </script>
+</body>
+</html>

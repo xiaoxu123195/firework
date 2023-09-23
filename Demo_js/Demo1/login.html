@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style1.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="drop">
+            <div class="content">
+                <h2>Sing in</h2>
+                <form action="" id="jump">
+                    <div class="inputBox">
+                        <input type="text" placeholder="Username" id="username">
+                    </div>
+                    <div class="inputBox">
+                        <input type="password" placeholder="Password" id="password">
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" value="Login" id="login">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <a href="#" class="btns">Forget Password</a>
+        <a href="./register.html" class="btns signup">Register</a>
+        <button href="#" class="btns null" id="dsp">display</button>
+    </div>
+
+    <script>
+        var passInput = document.getElementById("password")
+        var dsp = document.querySelector("#dsp")
+
+        dsp.onclick = function(){
+            console.log(passInput.type)
+            if(passInput.type=="password"){
+                passInput.type = "text"
+            }else{
+                passInput.type = "password"
+            }
+        }
+
+        var uservalue = localStorage.getItem("username")
+        var passvalue = localStorage.getItem("password")
+
+        var Login = document.querySelector("#login")
+        login.onclick = function(){
+            if(uservalue != username.value){
+                window.alert("用户名不存在!")
+            }
+            if(uservalue == username.value && passvalue != password.value){
+                window.alert("密码输入错误！")
+            }
+            if(uservalue == username.value && passvalue == password.value){
+                document.getElementById("jump").action= "./index.html"
+                // document.location.href ='./index.html'
+            }
+        }
+        
+    </script>
+
+</body>
+</html>

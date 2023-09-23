@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>烟花</title>
+    <style>
+        html,body{
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+        div{
+            color: white;
+            /* border: 3px solid rgb(223, 220, 204); */
+            font-size: 40px;
+            padding: 10px;
+            line-height: 60px;
+            text-align: center;
+            margin:200px auto;
+            font-weight: 1000;
+            display: block;
+            width: 500px;
+            height: 200px;
+            letter-spacing: 4px;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">javaScript:
+        !(function(){
+        
+            var canvas = document.createElement("canvas");
+            document.body.appendChild(canvas);
+        
+            canvas.style.position = "fixed";
+            canvas.style.left = "0";
+            canvas.style.top = "0";
+            canvas.style.zIndex = -1;
+        
+            var context = canvas.getContext("2d"); //进行绘制操作
+        
+            function resizeCanvas(){ //让当前canvas尺寸与网页可视区域一样大小
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+        
+                clearCanvas();
+            }
+        
+            function clearCanvas(){
+                //初始化颜色
+                context.fillStyle = "#000000";
+                context.fillRect(0,0,canvas.width,canvas.height);
+            }
+        
+            resizeCanvas();
+            
+            window.addEventListener("resize",resizeCanvas);
+        
+            function mouseDownHandler(e){
+                var x = e.clientX;
+                var y = e.clientY;
+        
+                createFireworks(x,y);
+            }
+            document.addEventListener("mousedown",mouseDownHandler);
+        
+            var particles = [];
+        
+            setInterval(function(){
+                createFireworks(Math.random()*canvas.width,Math.random()*canvas.height)
+            },1400)
+        
+            createFireworks(700,200)
+        
+        
+            function createFireworks(x,y){
+                var count = Math.random()*400; //多少个爆炸物
+                var radius = 0; //圆心半径
+        
+                var hue = Math.floor(Math.random()*51)+200;
+                var hueVariance = 200;
+        
+        
+                for(var i = 0;i<count;i++){
+                    var angle = 360/count * i;
+                    var radians = angle * Math.PI/180;
+        
+                   var p = {};
+        
+                   p.x = x;
+                   p.y = y;
+                   p.radians = radians;
+                   
+                   p.size = 2;
+        
+                    p.speed = (Math.random() * 5)+.4
+                    p.radius = p.speed;
+        
+                    p.hue = Math.floor(Math.random() * ((hue + hueVariance) - (hue - hueVariance))) + (hue - hueVariance);
+                    p.brighttness = Math.floor(Math.random() * 31)+50;
+                    p.alpha = (Math.floor(Math.random() * 61) +100) / 10
+        
+                   particles.push(p);
+                }
+            }
+            function drawFireworks(x,y){
+                clearCanvas();
+        
+                for(var i = 0;i<particles.length;i++){
+                    var p = particles[i];
+        
+                    var vx = Math.cos(p.radians)*p.radius;
+                    var vy = Math.sin(p.radians)*p.radius + 0.4;
+        
+                    p.x += vx;
+                    p.y += vy;
+        
+                    p.radius *= 1-p.speed/200;
+        
+                    p.alpha *= 1-p.speed/100;//透明度
+                    p.alpha -= 0.005; //衰减暗度
+        
+                    if(p.alpha<=0){
+                        particles.splice(i,1);
+                        continue;
+                    }
+        
+                    context.beginPath();
+                    context.arc(p.x,p.y,p.size,0,Math.PI*2,false);
+                    context.closePath();
+        
+                    context.fillStyle = 'hsla('+p.hue+',100%,'+p.brighttness+'%,'+p.alpha+')';
+                    context.fill();
+                }
+            }
+        
+            //requestAnimationFrame
+            function tick(){
+        
+                context.globalCompositeOperation = 'destination-out';
+                context.fillStyle = 'rgba(0,0,0,'+10/100+')';
+                context.fillRect(0,0,canvas.width,canvas.height);
+                context.globalCompositeOperation = 'lighter';
+        
+                drawFireworks();
+        
+                requestAnimationFrame(tick);
+            }
+            tick();
+            
+        
+        })();
+        
+        window.onload = function(){
+            // 获取div节点的dom对象
+            var divNode = document.querySelector('div');
+            // 需要写入页面的字符串，这里的字符内容就是待会要写入网页的内容
+            var codingStr = "祝徐tongtong越来越漂亮";
+            // 字符串索引
+            var j = 0;
+            // 创建循环定时器，通过循环定时器每200毫米执行里面的回调函数
+            var coding = setInterval(function(){
+             // slice()方法是截取字符串指定位置的方法
+             // 第一个参数是起始位置的索引，第二个参数是结束位置的索引（不包含结束位置）
+             // 最后返回的就是截取的字串
+             // 最后是模拟光标的效果
+             divNode.innerHTML = codingStr.slice(0,j) + '_';
+             j++;
+             // 如果索引大于了字符串的长度，把最后的光标删除并清除计时器
+             if(j > codingStr.length){
+              divNode.innerHTML = codingStr.slice(0,j);
+              clearInterval(coding);
+             }
+            },200)
+           }</script>
+    <div></div>
+</body>
+</html>

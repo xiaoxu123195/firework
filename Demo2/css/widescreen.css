@@ -1,0 +1,4 @@
+/*align icon to left*/
+#what .items .item{
+    display: flex;
+}

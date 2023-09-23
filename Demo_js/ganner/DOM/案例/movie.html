@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul{
+            list-style:none;
+        }
+        .header{
+            display: flex;
+            list-style: none;
+        }
+        .header li {
+            flex:1;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            /* border:1px solid black; */
+        }
+
+        .box {
+            list-style: none;
+            position: relative;
+            margin-top: 10px;
+        }
+        .box li {
+            overflow: hidden;
+            position: absolute;
+            display: none;
+            width: 100%;
+        }
+        .box li img {
+            float: left;
+            width: 80px;
+            margin-left: 10px;
+        }
+        .box li div{
+            height: 122px;
+        }
+        .box .a1 span{
+            color: red;
+        }
+        .dds{
+            font-size: 9px;
+            color: #fff;
+            background-color: #d2d6dc;
+            height: 14px;
+            line-height: 14px;
+            padding: 0 2px;
+            border-radius: 2px;
+            margin-left: 4px;
+        }
+        .title{
+            color: #191a1b;
+            font-size: 16px;
+            height: 22px;
+            line-height: 22px;
+            margin-right: 5px;
+            overflow: hidden;
+        }
+        .a1{
+            font-size: 13px;
+            margin-top: 4px;
+            color: #797d82;
+        }
+        .a2{
+            font-size: 13px;
+            margin-top: 4px;
+            color: #797d82;
+        }
+        .a3{
+            font-size: 13px;
+            margin-top: 4px;
+            color: #797d82;
+        }
+
+        .header .active{
+            color: red;
+            border-bottom: 1px solid red;
+        }
+        .box .active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <ul class="header">
+        <li class="active">正在热映</li>
+        <li>即将上映</li>
+    </ul>
+    <ul class="box">
+        <li class="active ul1"></li>
+        <li class="ul2"></li>
+    </ul>
+    <script>
+        var oHeaderItems = document.querySelectorAll(".header li")
+        var oBoxItems = document.querySelectorAll(".box li")
+
+        for(var i=0; i<oHeaderItems.length; i++){
+            //自定义属性
+            oHeaderItems[i].dataset.index = i
+            oHeaderItems[i].onclick = handler
+        }
+        // console.log(i)
+
+        function handler(){
+            // console.log(this.dataset.index)
+            var index = this.dataset.index
+            for(var m=0;m<oHeaderItems.length; m++){
+                oHeaderItems[m].classList.remove("active")
+                oBoxItems[m].classList.remove("active")
+            }
+
+            oHeaderItems[index].classList.add("active")
+            oBoxItems[index].classList.add("active")
+        }
+
+        var filmList = [
+            {
+                url: "https://pic.maizuo.com/usr/movie/1f25dd6943762288dfd84b961c98f478.jpg?x-oss-process=image/quality,Q_70",
+                title: "航海王：红发歌姬",
+                dd: "2D",
+                grade: 7.5,
+                tostar: "主演：谷口悟朗 田中真弓 中井和哉 冈村明美 山口胜平",
+                localtime: "日本 | 115分钟"
+            },
+            {
+                url: "https://pic.maizuo.com/usr/movie/2da2cc429af2610a0006d066db8384a3.jpg?x-oss-process=image/quality,Q_70",
+                title: "名侦探柯南：万圣节的新娘",
+                dd: "3D",
+                grade: 7.6,
+                tostar:"主演：高山南 山崎和佳奈 小山力也 三木真一郎 古谷彻",
+                localtime:"美国 | 190分钟"
+            },
+            {
+                url: "https://pic.maizuo.com/usr/movie/f31367bb1a275f032ea3793a0571d9e0.jpg?x-oss-process=image/quality,Q_70",
+                title: "万里归途",
+                dd: "2D",
+                grade: 7.3,
+                tostar:"主演：饶晓志 张译 王俊凯 殷桃 成泰燊",
+                localtime:"中国大陆 | 137分钟"
+            }
+        ]
+        var filmList1 = [
+            {
+                url: "https://pic.maizuo.com/usr/movie/fceeb41a1660d097d02fbcbda3191d8f.jpg?x-oss-process=image/quality,Q_70",
+                title: "阿凡达：水之道",
+                dd: "3D",
+                grade: "",
+                tostar:"主演：詹姆斯·卡梅隆 萨姆·沃辛顿 佐伊·索尔达娜 西格妮·韦弗 史蒂芬·朗",
+                localtime:"上映日期：周五 12月16日"
+            },
+            {
+                url: "https://pic.maizuo.com/usr/movie/430ef89419bf41c82a1357af81ad6a59.jpg?x-oss-process=image/quality,Q_70",
+                title: "龙马！新生网球王子",
+                dd: "2D",
+                grade: "",
+                tostar:"主演：神志那弘志 皆川纯子 高桥美佳子 松山鹰志 置鲇龙太郎",
+                localtime:"上映日期：周五 12月23日"
+            },
+            {
+                url: "https://pic.maizuo.com/usr/movie/34abe976a0baf62f0af6d9d41e7ef414.jpg?x-oss-process=image/quality,Q_70",
+                title: "保你平安",
+                dd: "2D",
+                grade: "",
+                tostar:"主演：大鹏 大鹏 李雪琴 尹正 王迅",
+                localtime:"上映日期：周六 12月31日"
+            }
+        ]
+
+        var filmItems = filmList.map(function(item){
+            return `<div>
+            <img src="${item.url}" alt="">
+            <p class="title">${item.title}<span class="dds">${item.dd}</span></p>
+            
+            <p class="a1">观众评分 <span>${item.grade}</span></p>
+            <p class="a2">${item.tostar}</p>
+            <p class="a3">${item.localtime}</p>
+            </div>`
+        })
+        var filmItems1 = filmList1.map(function(item){
+            return `<div>
+            <img src="${item.url}" alt="">
+            <p class="title">${item.title}<span class="dds">${item.dd}</span></p>
+            <p class="a1">${item.tostar}</p>
+            <p class="a2">${item.localtime}</p>
+            <p class="a3">观众评分 <span>${item.grade}</span></p>
+            </div>`
+        })
+
+        // console.log(filmItems.join(""))
+
+        var oul = document.querySelector(".ul1")
+        oul.innerHTML = filmItems.join("")
+
+        var oul1 = document.querySelector(".ul2")
+        oul1.innerHTML = filmItems1.join("")
+
+    </script>
+</body>
+</html>

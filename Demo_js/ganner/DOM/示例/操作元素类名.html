@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .item{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            color: black;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" class="item"></div>
+    <button id="btn">toggle</button>
+    <script>
+        console.log(box.className)
+        // box.className = "item1"
+
+        //classList属性 有box.classList.add/remove/toggle
+        btn.onclick = function(){
+            box.classList.toggle("item")
+        }
+
+    </script>
+</body>
+</html>

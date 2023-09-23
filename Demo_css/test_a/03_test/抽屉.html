@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+        div{
+            height: 100%;
+            width: 200px;
+            background: red;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            /* 100%就是自身的100% */
+            transform: translateX(-100%);
+
+            animation: ren 1s linear forwards;
+            /* 相反 */
+            /* animation: ren 1s linear forwards reverse; */
+
+            /* animation-fill-mode: forwards; */
+        }
+
+        @keyframes ren {
+            from{
+                transform: translateX(-100%);
+            }
+            to{
+                transform: translateX(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>
